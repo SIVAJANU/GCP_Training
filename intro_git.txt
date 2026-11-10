@@ -1,0 +1,215 @@
+GIT AND GITHUB – INTRODUCTION
+================================
+
+1. WHAT IS GIT?
+---------------
+
+Git is a Distributed Version Control System (DVCS) used to track changes in source code and manage different versions of a project.
+
+Purpose of Git:
+- Track code changes.
+- Maintain version history.
+- Collaborate with multiple developers.
+- Create and manage branches.
+- Restore previous versions of code.
+- Manage code development efficiently.
+
+Example:
+A developer creates a Python application and modifies it several times. Git tracks every committed version and helps recover previous versions whenever required.
+
+
+2. WHAT IS GITHUB?
+------------------
+
+GitHub is a cloud-based platform used to host Git repositories online.
+
+Purpose of GitHub:
+- Store source code online.
+- Share projects with other developers.
+- Collaborate with development teams.
+- Perform code reviews using Pull Requests.
+- Manage project issues.
+- Automate testing and deployment using GitHub Actions.
+
+Website: https://github.com/
+
+
+3. GIT VS GITHUB
+----------------
+
+Git:
+- Version control system.
+- Installed on a local computer.
+- Tracks code changes.
+- Supports offline operations.
+- Manages commits and branches.
+
+GitHub:
+- Cloud-based code hosting platform.
+- Stores Git repositories remotely.
+- Supports team collaboration.
+- Provides Pull Requests and code reviews.
+- Supports CI/CD automation.
+
+
+4. WHAT IS A GIT REPOSITORY?
+----------------------------
+
+A Git repository is a storage location where project files and their version history are maintained.
+
+Types:
+1. Local Repository – Stored on a developer's computer.
+2. Remote Repository – Hosted on GitHub or another Git hosting platform.
+
+Example:
+CustomerAnalytics/
+    main.py
+    customer.py
+    README.md
+    .gitignore
+
+
+5. BASIC GIT WORKFLOW
+---------------------
+
+1. Working Directory
+   Create or modify project files.
+
+2. Staging Area
+   Select changes using git add.
+
+3. Local Repository
+   Save changes using git commit.
+
+4. Remote Repository
+   Upload changes using git push.
+
+Workflow:
+
+Working Directory
+       |
+       | git add
+       v
+Staging Area
+       |
+       | git commit
+       v
+Local Repository
+       |
+       | git push
+       v
+GitHub Remote Repository
+
+
+6. WHAT IS A BRANCH?
+--------------------
+
+A branch is an independent line of development used to develop features without directly modifying the main codebase.
+
+Common branches:
+
+main        - Production-ready code.
+develop     - Development and integration code.
+feature/*   - New feature development.
+release/*   - Release preparation (optional).
+hotfix/*    - Urgent production fixes.
+
+
+7. WHAT IS A PULL REQUEST?
+--------------------------
+
+A Pull Request (PR) is a request to merge code changes from one branch into another branch.
+
+Purpose:
+- Review code before merging.
+- Identify bugs.
+- Maintain coding standards.
+- Run automated tests.
+- Obtain approval from senior developers.
+- Maintain an audit trail.
+
+Example:
+feature/customer-data
+          |
+          | Pull Request
+          v
+       develop
+          |
+          | Testing and Approval
+          v
+        main
+
+
+8. WHAT IS CI/CD?
+-----------------
+
+CI  - Continuous Integration
+CD  - Continuous Delivery / Continuous Deployment
+
+CI:
+Automatically builds and tests code whenever developers push changes or create Pull Requests.
+
+CD:
+Automates the process of releasing approved code to different environments.
+
+Typical workflow:
+
+Developer
+    |
+    v
+Feature Branch
+    |
+    v
+Pull Request
+    |
+    v
+Code Review and Testing
+    |
+    v
+Develop Branch
+    |
+    v
+DEV Environment
+    |
+    v
+QA / UAT Testing
+    |
+    v
+Main Branch
+    |
+    v
+Production Deployment
+
+
+9. WHAT IS A YAML FILE?
+-----------------------
+
+YAML stands for YAML Ain't Markup Language.
+
+It is a human-readable configuration format used to define automation workflows and application configurations.
+
+In GitHub Actions, YAML files define:
+- Workflow triggers.
+- Jobs and steps.
+- Build and testing commands.
+- Deployment instructions.
+- Environment configurations.
+
+Typical location:
+
+.github/
+    workflows/
+        ci-cd.yml
+
+
+10. GIT AND GITHUB IN DATA ENGINEERING
+--------------------------------------
+
+Git and GitHub are commonly used in Data Engineering projects to manage:
+
+- Python ingestion scripts.
+- BigQuery SQL scripts.
+- Dataflow pipelines.
+- Cloud Composer DAG files.
+- Terraform infrastructure code.
+- Configuration files
