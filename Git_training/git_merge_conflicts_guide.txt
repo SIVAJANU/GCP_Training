@@ -1,0 +1,200 @@
+GIT MERGE CONFLICTS: WHY THEY OCCUR AND HOW TO RESOLVE THEM
+
+1. WHAT IS A MERGE CONFLICT?
+
+A merge conflict happens when Git cannot automatically combine changes
+from different branches. Git pauses the merge and asks you to decide
+which changes should be kept.
+
+A conflict does not usually mean your repository is damaged. It means
+Git needs a person to choose how the competing changes should be
+combined.
+
+2. WHY DO MERGE CONFLICTS OCCUR?
+
+Common causes include:
+
+-   Two branches change the same lines in the same file.
+-   One branch edits a file while another branch deletes or renames it.
+-   Two branches add different content in the same location.
+-   A developer changes a file while another developer makes overlapping
+    changes to that file.
+-   A long-running feature branch is not regularly updated with changes
+    from the main or development branch.
+
+Example: - The main branch changes a line to: “Welcome to the
+application” - The feature/login branch changes the same line to:
+“Welcome back, user” - When Git tries to merge the branches, it cannot
+know which wording is right.
+
+3. HOW TO IDENTIFY A MERGE CONFLICT
+
+When a merge causes conflicts, Git displays a message such as:
+
+CONFLICT (content): Merge conflict in src/app.js Automatic merge failed;
+fix conflicts and then commit the result.
+
+Check the repository status:
+
+git status
+
+Git lists the files that need attention. In VS Code, conflicted files
+are also shown in the Source Control panel.
+
+4. HOW TO RESOLVE A CONFLICT USING VS CODE
+
+Step 1: Make sure you are on the branch that should receive the changes.
+For example, to merge feature/login into development:
+
+git switch development
+
+Step 2: Get the latest remote changes:
+
+git pull
+
+Step 3: Merge the feature branch:
+
+git merge feature/login
+
+Step 4: If a conflict occurs, open the conflicted file in VS Code.
+
+VS Code may show choices such as:
+
+Accept Current Change Accept Incoming Change Accept Both Changes Compare
+Changes
+
+In a merge: - Current Change = the content from the branch you are
+currently on (here, development). - Incoming Change = the content being
+merged in (here, feature/login).
+
+Choose the correct option based on the intended application behavior.
+You can also edit the file manually. Do not choose an option without
+reviewing the code and understanding the impact.
+
+Step 5: Review the entire file and make sure the final code is correct.
+Save the file.
+
+Step 6: Stage the resolved file:
+
+git add src/app.js
+
+Or stage all resolved files after reviewing them:
+
+git add .
+
+Step 7: Complete the merge with a commit:
+
+git commit -m “Resolve merge conflicts”
+
+Step 8: Push the updated branch:
+
+git push
+
+5. UNDERSTANDING THE CONFLICT MARKERS
+
+Git may place markers in a conflicted file like this:
+
+<<<<<<< HEAD Welcome to the application ======= Welcome back,
+user >>>>>>> feature/login
+
+Meaning: - <<<<<<< HEAD: start of the current branch’s version. -
+=======: separates the two versions. - >>>>>>> feature/login: end of the
+incoming branch’s version.
+
+After resolving, the file must contain only the intended final content.
+Remove all conflict markers (<<<<<<<, =======, and >>>>>>>), unless
+those strings are genuinely part of the file’s required content.
+
+For example, if both lines are needed, you might resolve it as:
+
+Welcome to the application Welcome back, user
+
+The correct result depends on the requirements; this is only an example.
+
+6. COMPLETE TERMINAL EXAMPLE
+
+Assume: - development is the target branch. - feature/login is the
+branch you want to merge into development.
+
+Commands:
+
+git switch development git pull origin development git merge
+feature/login git status
+
+If Git reports conflicts: 1. Open each conflicted file in VS Code. 2.
+Resolve the conflict and save each file. 3. Stage the resolved files. 4.
+Commit the merge. 5. Push the target branch.
+
+git add . git status git commit -m “Resolve conflicts while merging
+feature/login” git push origin development
+
+Important: git add . stages all changes in the current working tree. If
+you have unrelated work, stage only the files you intentionally
+resolved.
+
+7. HOW TO CANCEL A MERGE
+
+If you started a merge and want to abandon it before completing it, use:
+
+git merge –abort
+
+This attempts to return the working tree to the state before the merge.
+If you have uncommitted work, take care: inspect and preserve it before
+aborting. Do not use reset or clean commands casually because they can
+discard work.
+
+8. HOW TO PREVENT MERGE CONFLICTS
+
+-   Pull the latest changes before starting work.
+-   Keep feature branches short-lived where possible.
+-   Regularly update your feature branch from the target branch.
+-   Coordinate with teammates when editing shared files.
+-   Make small, focused commits.
+-   Avoid unnecessary formatting changes across entire files.
+-   Communicate before renaming or deleting files used by other
+    developers.
+-   Review changes before merging through a pull request.
+
+To update your feature branch with the latest development branch, one
+possible workflow is:
+
+git switch feature/login git fetch origin git merge origin/development
+
+Resolve any conflicts using the same steps, then push:
+
+git push
+
+Your team may use rebase instead of merge. Follow the workflow agreed by
+your team; do not rebase shared branches without understanding the
+impact.
+
+9. MERGE CONFLICT VS. MERGE
+
+A merge is the normal operation that combines work from two branches. A
+merge conflict is only an issue that occurs when Git cannot safely
+decide how to combine some changes automatically.
+
+10. QUICK REFERENCE
+
+git status Check repository and conflict status git fetch origin
+Download remote updates without merging git pull Fetch and integrate
+current branch updates git switch development Switch to the target
+branch git merge feature/login Merge feature/login into current branch
+git add Mark a resolved file as staged git add . Stage all changes
+(review first) git commit -m “message” Complete the merge after
+resolving conflicts git push Push committed changes git merge –abort
+Abort an in-progress merge
+
+11. IMPORTANT SAFETY CHECKS
+
+-   Confirm which branch you are on before merging: git branch
+    –show-current
+-   Run git status before and after resolving conflicts.
+-   Read both versions before choosing current, incoming, or both.
+-   Run relevant tests before pushing.
+-   Never delete conflict markers without deciding what the final code
+    should be.
+-   Do not force-push to shared branches unless your team explicitly
+    approves it.
+
+END OF GUIDE
