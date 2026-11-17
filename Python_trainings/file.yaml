@@ -1,0 +1,9 @@
+dev:
+  vars_proj_id:
+    var_proj: abcd-1234-rjh
+qa:
+  vars_proj_id:
+    var_proj: fghtbbb-1234-hggfgf
+pp:
+  vars_proj_id:
+    var_proj: fghtbbb-1234-hggfgf
