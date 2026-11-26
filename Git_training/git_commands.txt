@@ -22,6 +22,7 @@
 | Commit | `git diff --staged` | View staged changes |
 | Branch | `git branch` | List local branches |
 | Branch | `git branch <branch-name>` | Create a branch |
+git checkout -b feature/test_ravi | checkout the branch |
 | Branch | `git switch <branch-name>` | Switch branches |
 | Branch | `git switch -c <branch-name>` | Create and switch branch |
 | Branch | `git branch -d <branch-name>` | Delete merged branch |
@@ -135,4 +136,4 @@ git config --list
 
 # Check upstream tracking
 git branch -vv
-```
+
